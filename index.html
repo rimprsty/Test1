@@ -41,6 +41,103 @@
             overflow-x: hidden;
             background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 50%, var(--dark) 100%);
             background-attachment: fixed;
+            transition: all 0.5s ease;
+        }
+
+        /* Theme Variants */
+        body.science-theme {
+            --primary: #00b894;
+            --secondary: #0a192f;
+            --accent: #00d2d3;
+            --text: #e6f1ff;
+            --light-bg: #112240;
+            --dark: #020c1b;
+        }
+
+        body.pink-theme {
+            --primary: #ff6b9d;
+            --secondary: #2a0a2a;
+            --accent: #ff8fab;
+            --text: #ffeef7;
+            --light-bg: #3d1e3d;
+            --dark: #1a0a1a;
+        }
+
+        /* Welcome Modal */
+        .welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .welcome-content {
+            background: linear-gradient(135deg, rgba(42,42,42,0.9) 0%, rgba(26,26,26,0.95) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: modal-appear 0.5s ease;
+        }
+
+        @keyframes modal-appear {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .welcome-content h2 {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .welcome-content p {
+            margin-bottom: 20px;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .welcome-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--text);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
         }
         
         .container {
@@ -49,7 +146,7 @@
             padding: 0 20px;
         }
         
-        /* Dynamic Island */
+        /* Dynamic Island - Mobile Only */
         .dynamic-island {
             position: fixed;
             top: 20px;
@@ -70,9 +167,16 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        @media (min-width: 769px) {
+            .dynamic-island {
+                display: none;
+            }
+        }
         
         .dynamic-island.expanded {
-            width: 350px;
+            width: 90%;
+            max-width: 350px;
             height: 200px;
             border-radius: 25px;
         }
@@ -93,6 +197,12 @@
             margin-bottom: 15px;
             color: var(--primary);
         }
+
+        .user-greeting {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
         
         .island-content p {
             margin-bottom: 20px;
@@ -103,6 +213,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .island-btn {
@@ -118,6 +229,39 @@
         
         .island-btn:hover {
             background: var(--primary);
+        }
+
+        .theme-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .theme-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-btn.active {
+            border-color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .theme-default {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .theme-science {
+            background: linear-gradient(135deg, #00b894, #00d2d3);
+        }
+
+        .theme-pink {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
         }
         
         .island-close {
@@ -294,6 +438,14 @@
             padding-top: 80px;
             position: relative;
             overflow: hidden;
+        }
+
+        .user-welcome {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
         }
         
         .hero-content {
@@ -998,7 +1150,7 @@
             
             .dynamic-island.expanded {
                 width: 90%;
-                height: 180px;
+                height: 220px;
             }
             
             .btn-container {
@@ -1035,7 +1187,16 @@
             
             .dynamic-island.expanded {
                 width: 95%;
-                height: 200px;
+                height: 240px;
+            }
+
+            .island-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .island-btn {
+                width: 80%;
             }
         }
         
@@ -1065,17 +1226,46 @@
                 transform: none;
             }
         }
+
+        /* Interactive elements for mobile */
+        .touch-feedback:active {
+            transform: scale(0.95);
+        }
+
+        .parallax-element {
+            transition: transform 0.1s ease;
+        }
     </style>
 </head>
 <body>
-    <!-- Dynamic Island -->
+    <!-- Welcome Modal -->
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="welcome-content">
+            <h2>Halo! 👋</h2>
+            <p>Sebelum menjelajahi portofolio saya, boleh tahu nama kamu?</p>
+            <input type="text" class="name-input" id="userName" placeholder="Masukkan nama kamu..." maxlength="20">
+            <button class="welcome-btn touch-feedback" id="startBtn">Mulai Jelajahi!</button>
+        </div>
+    </div>
+    
+    <!-- Dynamic Island - Mobile Only -->
     <div class="dynamic-island" id="dynamicIsland">
         <div class="island-content">
-            <h3>Hai, Kenalan Yuk!</h3>
-            <p>Apakah Anda sekarang sudah mengenal saya? Butuh menghubungi?</p>
+            <div class="user-greeting" id="islandGreeting">Halo, Teman!</div>
+            <h3>Mau kenalan lebih dekat?</h3>
+            <p>Yuk hubungi atau follow saya!</p>
             <div class="island-buttons">
-                <button class="island-btn" id="contactBtn">Hubungi Saya</button>
-                <button class="island-btn" id="closeBtn">Tutup</button>
+                <button class="island-btn touch-feedback" id="waBtn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <button class="island-btn touch-feedback" id="igBtn">
+                    <i class="fab fa-instagram"></i> Instagram
+                </button>
+            </div>
+            <div class="theme-buttons">
+                <div class="theme-btn theme-default active" data-theme="default"></div>
+                <div class="theme-btn theme-science" data-theme="science"></div>
+                <div class="theme-btn theme-pink" data-theme="pink"></div>
             </div>
             <button class="island-close" id="closeIsland">
                 <i class="fas fa-times"></i>
@@ -1129,12 +1319,13 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
+                    <div class="user-welcome" id="userWelcome">Aloo User123! >_<</div>
                     <div class="welcome-text">Selamat Datang di Portofolio Saya</div>
                     <h1>Rimba Putra <span>Prasetyo</span></h1>
                     <p>Siswa SMPN 3 Lubuk Basung yang berprestasi dengan passion dalam coding, olahraga, dan organisasi. Siap untuk mengeksplorasi dunia teknologi dan mencapai prestasi lebih tinggi.</p>
                     <div class="btn-container">
-                        <a href="#about" class="btn">Jelajahi Lebih Lanjut</a>
-                        <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+                        <a href="#about" class="btn touch-feedback">Jelajahi Lebih Lanjut</a>
+                        <a href="#contact" class="btn btn-outline touch-feedback">Hubungi Saya</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -1293,18 +1484,15 @@
                 </div>
                 <div class="contact-form">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nama Lengkap" required>
+                        <input type="text" class="form-control" placeholder="Nama Anda">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Alamat Email" required>
+                        <input type="email" class="form-control" placeholder="Email Anda">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Subjek" required>
+                        <textarea class="form-control" placeholder="Pesan Anda"></textarea>
                     </div>
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Pesan" required></textarea>
-                    </div>
-                    <button type="button" class="btn" onclick="showMessage()">Kirim Pesan</button>
+                    <button class="btn touch-feedback" onclick="showMessage()">Kirim Pesan</button>
                 </div>
             </div>
         </div>
@@ -1314,15 +1502,63 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="https://wa.me/6285278183845" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/rimptrprsty_" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="https://wa.me/6285278183845" class="social-link touch-feedback" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/rimptrprsty_" class="social-link touch-feedback" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link touch-feedback"><i class="fab fa-github"></i></a>
             </div>
             <p class="copyright">&copy; 2025 Rimba Putra Prasetyo. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop>
+        <source src="https://pomf2.lain.la/f/gta9n1q7.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
+        // Welcome Modal Functionality
+        const welcomeModal = document.getElementById('welcomeModal');
+        const userNameInput = document.getElementById('userName');
+        const startBtn = document.getElementById('startBtn');
+        const userWelcome = document.getElementById('userWelcome');
+        const islandGreeting = document.getElementById('islandGreeting');
+        const bgMusic = document.getElementById('bgMusic');
+        
+        // Check if user has already visited
+        if (!localStorage.getItem('userName')) {
+            welcomeModal.style.display = 'flex';
+        } else {
+            const savedName = localStorage.getItem('userName');
+            userWelcome.textContent = `Aloo ${savedName}! >_<`;
+            islandGreeting.textContent = `Halo, ${savedName}!`;
+            // Start music after a short delay
+            setTimeout(() => {
+                bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
+            }, 1000);
+        }
+        
+        startBtn.addEventListener('click', function() {
+            const name = userNameInput.value.trim();
+            if (name) {
+                localStorage.setItem('userName', name);
+                userWelcome.textContent = `Aloo ${name}! >_<`;
+                islandGreeting.textContent = `Halo, ${name}!`;
+                welcomeModal.style.display = 'none';
+                // Start music after user interaction
+                bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
+            } else {
+                userNameInput.placeholder = "Tolong masukkan nama kamu dong...";
+                userNameInput.style.borderColor = "#ff6b6b";
+            }
+        });
+        
+        userNameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                startBtn.click();
+            }
+        });
+
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
@@ -1342,8 +1578,8 @@
         
         // Dynamic Island Functionality
         const dynamicIsland = document.getElementById('dynamicIsland');
-        const contactBtn = document.getElementById('contactBtn');
-        const closeBtn = document.getElementById('closeBtn');
+        const waBtn = document.getElementById('waBtn');
+        const igBtn = document.getElementById('igBtn');
         const closeIsland = document.getElementById('closeIsland');
         
         // Expand Dynamic Island on click
@@ -1353,22 +1589,47 @@
             }
         });
         
-        // Contact button - scroll to contact section
-        contactBtn.addEventListener('click', function(e) {
+        // WhatsApp button
+        waBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            window.open('https://wa.me/6285278183845', '_blank');
             dynamicIsland.classList.remove('expanded');
         });
         
-        // Close buttons
-        closeBtn.addEventListener('click', function(e) {
+        // Instagram button
+        igBtn.addEventListener('click', function(e) {
             e.stopPropagation();
+            window.open('https://instagram.com/rimptrprsty_', '_blank');
             dynamicIsland.classList.remove('expanded');
         });
         
+        // Close button
         closeIsland.addEventListener('click', function(e) {
             e.stopPropagation();
             dynamicIsland.classList.remove('expanded');
+        });
+        
+        // Theme Switching
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        
+        themeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const theme = this.getAttribute('data-theme');
+                
+                // Remove all theme classes
+                document.body.classList.remove('science-theme', 'pink-theme');
+                
+                // Add selected theme
+                if (theme !== 'default') {
+                    document.body.classList.add(`${theme}-theme`);
+                }
+                
+                // Update active button
+                themeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                dynamicIsland.classList.remove('expanded');
+            });
         });
         
         // Scroll Progress Bar
@@ -1396,12 +1657,24 @@
                     element.classList.add('visible');
                 }
             });
+
+            // Parallax effect for floating elements
+            const floatingElements = document.querySelectorAll('.floating-element');
+            const scrollY = window.scrollY;
+            
+            floatingElements.forEach((element, index) => {
+                const speed = 0.05 + (index * 0.02);
+                const yPos = -(scrollY * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
         };
 
-        // Auto-expand Dynamic Island after 3 seconds
-        setTimeout(() => {
-            dynamicIsland.classList.add('expanded');
-        }, 3000);
+        // Auto-expand Dynamic Island after 3 seconds on mobile
+        if (window.innerWidth <= 768) {
+            setTimeout(() => {
+                dynamicIsland.classList.add('expanded');
+            }, 3000);
+        }
 
         // Show message when contact form is submitted
         function showMessage() {
@@ -1414,6 +1687,25 @@
         // Touch device optimizations
         if ('ontouchstart' in window) {
             document.body.classList.add('touch-device');
+        }
+
+        // Add gyroscope effect for mobile devices if available
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', function(event) {
+                const x = event.beta;  // -180 to 180
+                const y = event.gamma; // -90 to 90
+                
+                // Limit the range
+                const limitedX = Math.max(-20, Math.min(20, x)) / 20;
+                const limitedY = Math.max(-20, Math.min(20, y)) / 20;
+                
+                // Apply transform to floating elements
+                const floatingElements = document.querySelectorAll('.floating-element');
+                floatingElements.forEach((element, index) => {
+                    const factor = 0.5 + (index * 0.1);
+                    element.style.transform = `translate(${limitedY * 10 * factor}px, ${limitedX * 10 * factor}px)`;
+                });
+            });
         }
     </script>
 </body>
