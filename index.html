@@ -41,19 +41,10 @@
             overflow-x: hidden;
             background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 50%, var(--dark) 100%);
             background-attachment: fixed;
-            transition: all 0.5s ease;
+            transition: background-color 0.5s ease;
         }
 
-        /* Theme Variants */
-        body.science-theme {
-            --primary: #00b894;
-            --secondary: #0a192f;
-            --accent: #00d2d3;
-            --text: #e6f1ff;
-            --light-bg: #112240;
-            --dark: #020c1b;
-        }
-
+        /* Pink theme for Ayu */
         body.pink-theme {
             --primary: #ff6b9d;
             --secondary: #2a0a2a;
@@ -146,7 +137,7 @@
             padding: 0 20px;
         }
         
-        /* Dynamic Island - Mobile Only */
+        /* Dynamic Island */
         .dynamic-island {
             position: fixed;
             top: 20px;
@@ -167,16 +158,9 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        @media (min-width: 769px) {
-            .dynamic-island {
-                display: none;
-            }
-        }
         
         .dynamic-island.expanded {
-            width: 90%;
-            max-width: 350px;
+            width: 350px;
             height: 200px;
             border-radius: 25px;
         }
@@ -213,7 +197,6 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            flex-wrap: wrap;
         }
         
         .island-btn {
@@ -229,39 +212,6 @@
         
         .island-btn:hover {
             background: var(--primary);
-        }
-
-        .theme-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .theme-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .theme-btn.active {
-            border-color: var(--primary);
-            transform: scale(1.1);
-        }
-
-        .theme-default {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-        }
-
-        .theme-science {
-            background: linear-gradient(135deg, #00b894, #00d2d3);
-        }
-
-        .theme-pink {
-            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
         }
         
         .island-close {
@@ -906,44 +856,6 @@
             box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
         }
         
-        .contact-form {
-            flex: 1;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateX(20px);
-            transition: all 0.8s ease;
-        }
-        
-        .form-group.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(52, 152, 219, 0.3);
-            border-radius: 5px;
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -1150,7 +1062,7 @@
             
             .dynamic-island.expanded {
                 width: 90%;
-                height: 220px;
+                height: 180px;
             }
             
             .btn-container {
@@ -1187,16 +1099,7 @@
             
             .dynamic-island.expanded {
                 width: 95%;
-                height: 240px;
-            }
-
-            .island-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .island-btn {
-                width: 80%;
+                height: 200px;
             }
         }
         
@@ -1226,15 +1129,6 @@
                 transform: none;
             }
         }
-
-        /* Interactive elements for mobile */
-        .touch-feedback:active {
-            transform: scale(0.95);
-        }
-
-        .parallax-element {
-            transition: transform 0.1s ease;
-        }
     </style>
 </head>
 <body>
@@ -1244,28 +1138,19 @@
             <h2>Halo! 👋</h2>
             <p>Sebelum menjelajahi portofolio saya, boleh tahu nama kamu?</p>
             <input type="text" class="name-input" id="userName" placeholder="Masukkan nama kamu..." maxlength="20">
-            <button class="welcome-btn touch-feedback" id="startBtn">Mulai Jelajahi!</button>
+            <button class="welcome-btn" id="startBtn">Mulai Jelajahi!</button>
         </div>
     </div>
     
-    <!-- Dynamic Island - Mobile Only -->
+    <!-- Dynamic Island -->
     <div class="dynamic-island" id="dynamicIsland">
         <div class="island-content">
             <div class="user-greeting" id="islandGreeting">Halo, Teman!</div>
             <h3>Mau kenalan lebih dekat?</h3>
             <p>Yuk hubungi atau follow saya!</p>
             <div class="island-buttons">
-                <button class="island-btn touch-feedback" id="waBtn">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </button>
-                <button class="island-btn touch-feedback" id="igBtn">
-                    <i class="fab fa-instagram"></i> Instagram
-                </button>
-            </div>
-            <div class="theme-buttons">
-                <div class="theme-btn theme-default active" data-theme="default"></div>
-                <div class="theme-btn theme-science" data-theme="science"></div>
-                <div class="theme-btn theme-pink" data-theme="pink"></div>
+                <button class="island-btn" id="contactBtn">Hubungi Saya</button>
+                <button class="island-btn" id="followBtn">Follow Instagram</button>
             </div>
             <button class="island-close" id="closeIsland">
                 <i class="fas fa-times"></i>
@@ -1324,8 +1209,8 @@
                     <h1>Rimba Putra <span>Prasetyo</span></h1>
                     <p>Siswa SMPN 3 Lubuk Basung yang berprestasi dengan passion dalam coding, olahraga, dan organisasi. Siap untuk mengeksplorasi dunia teknologi dan mencapai prestasi lebih tinggi.</p>
                     <div class="btn-container">
-                        <a href="#about" class="btn touch-feedback">Jelajahi Lebih Lanjut</a>
-                        <a href="#contact" class="btn btn-outline touch-feedback">Hubungi Saya</a>
+                        <a href="#about" class="btn">Jelajahi Lebih Lanjut</a>
+                        <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -1482,18 +1367,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nama Anda">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email Anda">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Pesan Anda"></textarea>
-                    </div>
-                    <button class="btn touch-feedback" onclick="showMessage()">Kirim Pesan</button>
-                </div>
             </div>
         </div>
     </section>
@@ -1502,9 +1375,9 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="https://wa.me/6285278183845" class="social-link touch-feedback" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/rimptrprsty_" class="social-link touch-feedback" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-link touch-feedback"><i class="fab fa-github"></i></a>
+                <a href="https://wa.me/6285278183845" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/rimptrprsty_" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
             </div>
             <p class="copyright">&copy; 2025 Rimba Putra Prasetyo. All Rights Reserved.</p>
         </div>
@@ -1512,7 +1385,7 @@
 
     <!-- Audio Element -->
     <audio id="bgMusic" loop>
-        <source src="https://pomf2.lain.la/f/gta9n1q7.mp3" type="audio/mpeg">
+        <source src="https://pomf2.lain.la/f/ijsgvm.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -1532,6 +1405,12 @@
             const savedName = localStorage.getItem('userName');
             userWelcome.textContent = `Aloo ${savedName}! >_<`;
             islandGreeting.textContent = `Halo, ${savedName}!`;
+            
+            // Apply pink theme if name is Ayu
+            if (savedName.toLowerCase() === 'ayu') {
+                document.body.classList.add('pink-theme');
+            }
+            
             // Start music after a short delay
             setTimeout(() => {
                 bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
@@ -1545,6 +1424,12 @@
                 userWelcome.textContent = `Aloo ${name}! >_<`;
                 islandGreeting.textContent = `Halo, ${name}!`;
                 welcomeModal.style.display = 'none';
+                
+                // Apply pink theme if name is Ayu
+                if (name.toLowerCase() === 'ayu') {
+                    document.body.classList.add('pink-theme');
+                }
+                
                 // Start music after user interaction
                 bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
             } else {
@@ -1578,8 +1463,8 @@
         
         // Dynamic Island Functionality
         const dynamicIsland = document.getElementById('dynamicIsland');
-        const waBtn = document.getElementById('waBtn');
-        const igBtn = document.getElementById('igBtn');
+        const contactBtn = document.getElementById('contactBtn');
+        const followBtn = document.getElementById('followBtn');
         const closeIsland = document.getElementById('closeIsland');
         
         // Expand Dynamic Island on click
@@ -1589,15 +1474,15 @@
             }
         });
         
-        // WhatsApp button
-        waBtn.addEventListener('click', function(e) {
+        // Contact button - scroll to contact section
+        contactBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            window.open('https://wa.me/6285278183845', '_blank');
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             dynamicIsland.classList.remove('expanded');
         });
         
-        // Instagram button
-        igBtn.addEventListener('click', function(e) {
+        // Follow button - open Instagram
+        followBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             window.open('https://instagram.com/rimptrprsty_', '_blank');
             dynamicIsland.classList.remove('expanded');
@@ -1607,29 +1492,6 @@
         closeIsland.addEventListener('click', function(e) {
             e.stopPropagation();
             dynamicIsland.classList.remove('expanded');
-        });
-        
-        // Theme Switching
-        const themeButtons = document.querySelectorAll('.theme-btn');
-        
-        themeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const theme = this.getAttribute('data-theme');
-                
-                // Remove all theme classes
-                document.body.classList.remove('science-theme', 'pink-theme');
-                
-                // Add selected theme
-                if (theme !== 'default') {
-                    document.body.classList.add(`${theme}-theme`);
-                }
-                
-                // Update active button
-                themeButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                dynamicIsland.classList.remove('expanded');
-            });
         });
         
         // Scroll Progress Bar
@@ -1647,7 +1509,7 @@
             }
             
             // Scroll animations
-            const elements = document.querySelectorAll('.section-title, .about-content, .skill-item, .hobby-card, .timeline-item, .contact-content, .contact-item, .form-group');
+            const elements = document.querySelectorAll('.section-title, .about-content, .skill-item, .hobby-card, .timeline-item, .contact-content, .contact-item');
             
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -1657,29 +1519,12 @@
                     element.classList.add('visible');
                 }
             });
-
-            // Parallax effect for floating elements
-            const floatingElements = document.querySelectorAll('.floating-element');
-            const scrollY = window.scrollY;
-            
-            floatingElements.forEach((element, index) => {
-                const speed = 0.05 + (index * 0.02);
-                const yPos = -(scrollY * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
         };
 
-        // Auto-expand Dynamic Island after 3 seconds on mobile
-        if (window.innerWidth <= 768) {
-            setTimeout(() => {
-                dynamicIsland.classList.add('expanded');
-            }, 3000);
-        }
-
-        // Show message when contact form is submitted
-        function showMessage() {
-            alert('Terima kasih! Pesan Anda telah dikirim. Saya akan membalasnya segera.');
-        }
+        // Auto-expand Dynamic Island after 3 seconds
+        setTimeout(() => {
+            dynamicIsland.classList.add('expanded');
+        }, 3000);
 
         // Trigger scroll event on load to check initial positions
         window.dispatchEvent(new Event('scroll'));
@@ -1687,25 +1532,6 @@
         // Touch device optimizations
         if ('ontouchstart' in window) {
             document.body.classList.add('touch-device');
-        }
-
-        // Add gyroscope effect for mobile devices if available
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', function(event) {
-                const x = event.beta;  // -180 to 180
-                const y = event.gamma; // -90 to 90
-                
-                // Limit the range
-                const limitedX = Math.max(-20, Math.min(20, x)) / 20;
-                const limitedY = Math.max(-20, Math.min(20, y)) / 20;
-                
-                // Apply transform to floating elements
-                const floatingElements = document.querySelectorAll('.floating-element');
-                floatingElements.forEach((element, index) => {
-                    const factor = 0.5 + (index * 0.1);
-                    element.style.transform = `translate(${limitedY * 10 * factor}px, ${limitedX * 10 * factor}px)`;
-                });
-            });
         }
     </script>
 </body>
